@@ -1,0 +1,26 @@
+name: flutter_mvvm_generator
+description: "Code generator for Flutter MVVM architecture. Generates views, view models, models and repositories."
+version: 1.0.0
+homepage: https://github.com/AbaHatschi/flutter_mvvm_generator
+repository: https://github.com/AbaHatschi/flutter_mvvm_generator
+publish_to: none
+
+environment:
+  sdk: ^3.9.2
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter_mvvm_core:
+    git:
+      url: https://github.com/AbaHatschi/flutter_mvvm_core.git
+  flutter:
+    sdk: flutter
+  path: ^1.9.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  
+flutter:
+  uses-material-design: true
