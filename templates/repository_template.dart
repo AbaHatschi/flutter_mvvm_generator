@@ -1,6 +1,7 @@
 import 'package:json_database/json_database.dart';
 
 import '../models/{{name_snake}}.dart';
+import '../services/logger_service.dart';
 
 /// Repository for {{name}} management
 /// Inherits from BaseRepository and implements specific {{name}} logic
@@ -35,7 +36,7 @@ class {{name}}Repository extends BaseRepository<{{name}}> {
   
   /// Search {{name}} for name
   {{name}}? findByName(String name) {
-    return findFirst({'name': name});
+    return findFirst(<String, dynamic>{'name': name});
   }
   
   /// Searches all {{name}}s for conditions
@@ -45,6 +46,6 @@ class {{name}}Repository extends BaseRepository<{{name}}> {
   
   /// Checks whether name already exists
   bool nameExists(String name) {
-    return exists({'name': name});
+    return exists(<String, dynamic>{'name': name});
   }  
 }
