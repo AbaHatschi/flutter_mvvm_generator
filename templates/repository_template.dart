@@ -6,7 +6,20 @@ import '../models/{{name_snake}}.dart';
 /// Inherits from BaseRepository and implements specific {{name}} logic
 class {{name}}Repository extends BaseRepository<{{name}}> {
   {{name}}Repository() : super('{{name_snake}}s', databaseName: 'app_database') {
-    //! {{name}}Repository initialized - checking existing data
+    try {
+      DatabaseEngine.instance.initialize(databaseName: '{{name_snake}}s');
+      Logger.instance.info(
+        '{{name}} model registered in database',
+        source: '{{name}}Repository',
+      );
+    } catch (error, stackTrace) {
+      Logger.instance.error(
+        'Failed to register {{name}} model in database',
+        error: error,
+        stackTrace: stackTrace,
+        source: '{{name}}Repository',
+      );
+    }
   }
   
   @override
