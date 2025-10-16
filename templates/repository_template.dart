@@ -7,25 +7,31 @@ import '../models/{{name_snake}}.dart';
 class {{name}}Repository extends BaseRepository<{{name}}> {
   {{name}}Repository() : super('{{name_snake}}s', databaseName: 'app_database') {
     try {
-      DatabaseEngine.instance.initialize(databaseName: '{{name_snake}}s');
-      Logger.instance.info(
-        '{{name}} model registered in database',
+      final int existingCount = count();
+      LoggerService.instance.info(
+        '{{name}}Repository initialized successfully',
         source: '{{name}}Repository',
+        data: <String, Object?>{
+          'tableName': '{{name_snake}}s',
+          'existingRecords': existingCount,
+        },
       );
     } catch (error, stackTrace) {
-      Logger.instance.error(
-        'Failed to register {{name}} model in database',
+      LoggerService.instance.error(
+        'Failed to initialize {{name}}Repository',
         error: error,
         stackTrace: stackTrace,
         source: '{{name}}Repository',
       );
+      rethrow;
     }
   }
   
   @override
   {{name}} fromJson(Map<String, dynamic> json) => {{name}}.fromJson(json);
   
-  // Specific {{name}} methods
+  //? Specific {{name}} methods or
+  //? Add more specific methods for {{name}}
   
   /// Search {{name}} for name
   {{name}}? findByName(String name) {
@@ -40,7 +46,5 @@ class {{name}}Repository extends BaseRepository<{{name}}> {
   /// Checks whether name already exists
   bool nameExists(String name) {
     return exists({'name': name});
-  }
-  
-  // TODO: Add more specific methods for {{name}}
+  }  
 }
